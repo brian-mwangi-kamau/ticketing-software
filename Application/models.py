@@ -59,3 +59,10 @@ class Customer(AbstractBaseUser, PermissionsMixin):
         return True
     
 
+
+class CustomerContact(models.Model):
+    id = models.AutoField(primary_key=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='customer')
+    first_name = models.CharField(max_length=50, null=True, blank=False)
+    last_name = models.CharField(max_length=50, null=True, blank=False)
+    phone_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
