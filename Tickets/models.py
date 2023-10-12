@@ -5,13 +5,12 @@ from Application.models import Customer, CustomerContact
 class Ticket(models.Model):
     id  = models.AutoField(primary_key=True)
     creator = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    contact = models.ForeignKey(CustomerContact, on_delete=models.CASCADE, null=True, blank=False)
     PRIORITY_CHOICES = [
-        ('one', 'One'),
-        ('two', 'Two'),
-        ('three', 'Three'),
+        ('low', 'Low'),
+        ('medium', 'Medium'),
+        ('high', 'High'),
     ]
-    priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default="two")
+    priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default="medium")
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=100)
     message = models.TextField(max_length=1000)
@@ -25,7 +24,7 @@ class Ticket(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Open')
 
     def __str__(self):
-        return self.creator.username + " " + self.title
+        return self.title
 
 
 

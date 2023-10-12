@@ -35,7 +35,7 @@ def login_view(request):
 @login_required
 def console(request):
     user = request.user
-    if user.is_admin:
+    if user.is_staff:
         return render(request, 'staff_console.html')
     else:
         return render(request, 'console.html')
