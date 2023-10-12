@@ -24,9 +24,17 @@ class Ticket(models.Model):
     ]
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Open')
 
+    def __str__(self):
+        return self.creator.username + " " + self.title
+
+
+
 class Comment(models.Model):
     id = models.AutoField(primary_key=True)
     message = models.TextField(max_length=1000)
     commented_by = models.ForeignKey(Customer, on_delete=models.CASCADE)
     belongs_to_ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     commented_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.message

@@ -66,3 +66,6 @@ class CustomerContact(models.Model):
     first_name = models.CharField(max_length=50, null=True, blank=False)
     last_name = models.CharField(max_length=50, null=True, blank=False)
     phone_number = models.CharField(max_length=10, unique=True, null=True, blank=False)
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name
