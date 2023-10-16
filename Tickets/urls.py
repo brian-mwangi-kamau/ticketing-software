@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     path('create/', views.create_ticket, name='create_ticket'),
+    path('comment/<int:id>', views.add_comment, name='add_comment'),
 ]

@@ -1,7 +1,6 @@
 from django.db import models
 from Application.models import Customer, CustomerContact
 
-
 class Ticket(models.Model):
     id  = models.AutoField(primary_key=True)
     creator = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -37,3 +36,5 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.message
+    
+    

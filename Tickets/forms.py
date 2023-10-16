@@ -13,3 +13,10 @@ class CreateTicket(forms.ModelForm):
             'image',
         )
 
+
+class AddComment(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = (
+            'message',
+        )

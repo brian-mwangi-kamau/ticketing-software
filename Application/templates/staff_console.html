@@ -1,7 +1,25 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-    <head></head>
+    <head>
+        <title>Staff console</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'staff_console.css' %}">
+    </head>
     <body>
-        <h1>You are viewing the staff console page</h1>
+        {% block content %}
+        <header class="navbar navbar-expand navbar-dark bg-dark flex-column flex-md-row bd-navbar">
+			<a class="navbar-brand mb-0 h1" href="/">Help Desk</a>
+			
+            <ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a id="nav-admin" class="nav-link" href="">my profile</a>
+				</li>
+			</ul>
+		</header>
+        <div class="container">
+
+        </div>
+        {% endblock %}
     </body>
 </html>
