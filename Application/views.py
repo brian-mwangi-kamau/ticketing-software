@@ -30,15 +30,6 @@ def login_view(request):
         form = LoginForm
     return render(request, 'registration/login.html', {'form': form})
 
-
-
-@login_required
-def console(request):
-    user = request.user
-    if user.is_staff:
-        return render(request, 'staff_console.html')
-    else:
-        return render(request, 'console.html')
     
 
     

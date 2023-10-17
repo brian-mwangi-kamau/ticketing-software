@@ -17,8 +17,8 @@ class Ticket(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_updated_on = models.DateTimeField(auto_now_add=True)
     STATUS_CHOICES = [
-        ('open', 'Open'),
-        ('closed', 'Closed'),
+        ('Open', 'Open'),
+        ('Closed', 'Closed'),
     ]
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Open')
 
@@ -36,5 +36,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.message
-    
     

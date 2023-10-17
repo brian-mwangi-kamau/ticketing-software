@@ -6,6 +6,26 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from .models import Ticket
 from django.contrib import messages
+from django.db.models import Q
+
+
+
+@login_required
+def console(request):
+    user = request.user
+    if user.is_staff:
+        return render(request, 'staff_console.html')
+    else:
+
+        open_tickets = Ticket.objects.filter(Q(creator=user) | Q(status='open')).order_by('-created_on')
+        closed_tickets = Ticket.objects.filter(Q(creator=user) | Q(status='closed')).order_by('-created_on')
+
+        context = {
+            'open_tickets': open_tickets,
+            'closed_tickets': closed_tickets,
+        }
+        return render(request, 'console.html', context)
+    
 
 
 @login_required
@@ -16,8 +36,8 @@ def create_ticket(request):
         if request.method == 'POST':
             form = CreateTicket(request.POST)
             if form.is_valid():
-                form.instance.creator = user
-                ticket = form.save()
+                ticket = form.save(commit=False)
+                ticket.creator = request.user
                 ticket.save()
 
                 return redirect('console')
